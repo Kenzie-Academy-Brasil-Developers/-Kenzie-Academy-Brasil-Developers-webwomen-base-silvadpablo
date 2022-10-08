@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/displays.css">
+    <link rel="stylesheet" href="./styles/buttons.css">
+    <link rel="stylesheet" href="./styles/cards.css">
+    <link rel="stylesheet" href="./styles/texts.css">
+    <link rel="stylesheet" href="./pages/home/index.css">
+    <link rel="stylesheet" href="./styles/globalStyles.css">
+    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+    <title>Webwomen</title>
+    <meta
+      name="description"
+      content="Está procurando oportunidades de estágio, emprego ou bolsas de estudo? 
+      Ou até mesmo oportunidades para atender eventos de tecnologia no Brasil 
+      e ao redor do mundo?"
+    />
+</head>
+<body>
+  <header class="flex items-center">
+    <div class="container">
+      <img src="./assets/img/logo.png" alt="logo-webwomen">
+      <h1 class="header-title">Lugar de mulher é onde ela quiser!</h1>
+      <h5 class="header-text">Está procurando oportunidades de estágio, emprego ou bolsas de estudo?<br>
+        Ou até mesmo oportunidades para atender eventos de tecnologia no Brasil e ao redor do mundo?</h5>
+      <h5 class="header-call">Confira aqui embaixo o que temos para você!</h5>
+      <button class="btn btn-default btn-big">Ir para a seção de vagas</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="container media-invert">
+
+      <div class="sticky media-position">
+        <ul id="selected-positions" class="card-aside-title media-position">
+          <h2 class="vacancies-selected">Vagas Selecionadas</h2>
+        </ul>
+      </div>
+
+      <ul id="all-positions">
+        <h2 class="vacancies">Vagas</h2>
+      </ul>
+    </section>
+  </main>
+
+  <script src="./pages/home/jobsData.js"></script>
+  <script src="./Scripts/render.js"></script>
+  <script src="./pages/home/index.js"></script>
+</body>
+</html>

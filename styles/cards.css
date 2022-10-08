@@ -1,0 +1,69 @@
+.card {
+    width: 618px;
+    background-color: var(--color-grey-6);
+    padding: var(--card-padding);
+    border-radius: var(--radius-default);
+    margin-bottom: 32px;
+}
+
+.card-aside-title {
+    border-radius: var(--radius-default);
+    width: 503px;
+    background-color: var(--color-grey-6);
+    position: relative;
+    top: 138px;
+    left: 750px;
+}
+
+.sticky {
+    height: 0;
+    position: sticky;
+    top: 0px;
+}
+
+.card-aside-none {
+    border-radius: var(--radius-default);
+    width: 503px;
+    background-color: var(--color-grey-6);
+}
+
+.card-aside {
+    border-radius: 0 0 8px 8px;
+    width: 503px;
+    background-color: var(--color-grey-6);
+}
+
+.card-aside:hover {
+    background-color: var(--color-grey-5);
+}
+
+.card-empty-bars {
+    background-color: var(--color-grey-5);
+    border-radius: 32px;
+    height: 16px;
+    margin-bottom: 15px;
+    margin-left: 28px;
+}
+
+.card-empty-bar-top {
+    width: 149px;
+}
+
+.card-empty-bar-middle {
+    width: 267px;
+}
+
+.card-empty-bar-bottom-left {
+    width: 103px;
+    margin-right: 7px;
+}
+.card-empty-bar-bottom-middle {
+    width: 103px;
+    margin-left: 0;
+    margin-right: 7px;
+}
+
+.card-empty-bar-bottom-right {
+    margin-left: 0;
+    width: 45px;
+}

@@ -1,0 +1,53 @@
+.btn {
+    border: var(--button-border);
+    border-radius: var(--radius-default);
+    font-family: var(--font-family);
+}
+
+.btn-default {
+    background-color: var(--color-brand-1);
+    color: var(--color-grey-6);
+    cursor: var(--cursor);
+}
+
+.btn-default:hover {
+    background-color: var(--color-brand-2);
+}
+
+.btn-big {
+    padding: var(--big-button-padding);
+    cursor: var(--cursor);
+}
+
+.btn-small {
+    padding: var(--small-button-padding);
+    cursor: var(--cursor);
+}
+
+.btn-hide {
+    visibility: hidden;
+}
+
+.btn-icon {
+    background-color: var(--color-grey-4);
+    background-image: url(../assets/img/trash.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 45px;
+    height: 38px;
+    cursor: var(--cursor);
+    margin-top: 32px;
+    margin-right: 28px;
+}
+
+.btn-icon:hover {
+    background-color: var(--color-grey-3);
+}
+
+.btn-type {
+    background-color: var(--color-grey-3);
+    color: var(--color-grey-2);
+    font-size: var(--text-3);
+    padding: 4px 12px;
+    margin-right: 20px;
+}
