@@ -1,5 +1,5 @@
 .card {
-    width: 618px;
+    width: 50%;
     background-color: var(--color-grey-6);
     padding: var(--card-padding);
     border-radius: var(--radius-default);
@@ -8,7 +8,7 @@
 
 .card-aside-title {
     border-radius: var(--radius-default);
-    width: 503px;
+    width: 45%;
     background-color: var(--color-grey-6);
     position: relative;
     top: 138px;
@@ -23,13 +23,13 @@
 
 .card-aside-none {
     border-radius: var(--radius-default);
-    width: 503px;
+    width: 100%;
     background-color: var(--color-grey-6);
 }
 
 .card-aside {
     border-radius: 0 0 8px 8px;
-    width: 503px;
+    width: 100%;
     background-color: var(--color-grey-6);
 }
 

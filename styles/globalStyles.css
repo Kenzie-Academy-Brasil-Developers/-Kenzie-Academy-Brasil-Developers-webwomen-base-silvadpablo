@@ -105,7 +105,7 @@ main {
 
   .container {
     width: 100%;
-    max-width: 375px;
+    max-width: 90%;
   }
 
   .media-invert {
@@ -122,14 +122,14 @@ main {
   }
 
   .card {
-    width: 344px;
+    width: 90%;
   }
 
   .card-aside-title{
-      width: 344px;
+      width: 100%;
   }
 
   .card-aside{
-      width: 344px;
+      width: 100%;
   }
 }
