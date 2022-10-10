@@ -35,62 +35,6 @@ function renderStickyNone () {
 }
 renderStickyNone()
 
-function removeSidePosition (id) {
-    let sidePosition = document.getElementById(`applied-${id}`)
-    sidePosition.remove()
-    let anyApplied = document.querySelector(".card-aside")
-    if(!anyApplied){
-        renderStickyNone()
-    }
-}
-
-function renderSidePostion (id) {
-    let filteredPosition = jobsData.filter((number) => number.id == id)
-    let {title, enterprise, location} = filteredPosition[0]
-    let ul = document.getElementById("selected-positions")
-
-    let li = document.createElement("li")
-    li.classList = "card-aside"
-    li.id = `applied-${id}`
-    ul.append(li)
-
-    let divTitle = document.createElement("div")
-    divTitle.classList = "flex justify-between"
-    li.append(divTitle)
-
-    let h5 = document.createElement("h5")
-    h5.classList = "aside-title"
-    h5.innerText = title
-    divTitle.append(h5)
-
-    let button = document.createElement("button")
-    button.classList = "btn btn-icon"
-    divTitle.append(button)
-    button.addEventListener("click", () => {
-        removeSidePosition(id)
-        switchButton(id)
-    })
-
-    let divType = document.createElement("div")
-    divType.classList = "flex"
-    li.append(divType)
-
-    let pCompany = document.createElement("p")
-    pCompany.classList = "card-aside-type-text"
-    pCompany.innerText = enterprise
-    divType.append(pCompany)
-
-    let pLocation = document.createElement("p")
-    pLocation.classList = "card-aside-type-text"
-    pLocation.innerText = location
-    divType.append(pLocation)
-
-    let localPosition = JSON.parse(localStorage.getItem("appliedPosition")) || []
-    localPosition = [localPosition, filteredPosition]
-    console.log(localPosition)
-
-    localStorage.setItem("appliedPosition", JSON.stringify(localPosition))
-}
 
 function renderPosition () {
     let allPositions = document.getElementById("all-positions")
@@ -153,6 +97,7 @@ function renderPosition () {
         buttonAdd.addEventListener("click", () => {
             let asidePosition = document.getElementById(`applied-${id}`)
             let asideNone = document.getElementById("aside-none")
+            
             if (!asidePosition){
                 renderSidePostion(id)
             }
@@ -175,6 +120,74 @@ function renderPosition () {
     
 }
 renderPosition(jobsData)
+
+let stored = []
+
+function removeSidePosition (id) {
+    let sidePosition = document.getElementById(`applied-${id}`)
+    
+    let storedPosition = stored.indexOf(id)
+    stored.splice(storedPosition, 1)
+    localStorage.setItem("appliedPositions", stored)
+    
+    sidePosition.remove()
+    let anyApplied = document.querySelector(".card-aside")
+    if(!anyApplied){
+        renderStickyNone()
+    }
+}
+
+function renderSidePostion (id) {
+    let filteredPosition = jobsData.filter((number) => number.id == id)
+    let {title, enterprise, location} = filteredPosition[0]
+    let ul = document.getElementById("selected-positions")
+
+    let li = document.createElement("li")
+    li.classList = "card-aside"
+    li.id = `applied-${id}`
+    ul.append(li)
+
+    let divTitle = document.createElement("div")
+    divTitle.classList = "flex justify-between"
+    li.append(divTitle)
+
+    let h5 = document.createElement("h5")
+    h5.classList = "aside-title"
+    h5.innerText = title
+    divTitle.append(h5)
+
+    let button = document.createElement("button")
+    button.classList = "btn btn-icon"
+    divTitle.append(button)
+    button.addEventListener("click", () => {
+        removeSidePosition(id)
+        switchButton(id)
+    })
+
+    let divType = document.createElement("div")
+    divType.classList = "flex"
+    li.append(divType)
+
+    let pCompany = document.createElement("p")
+    pCompany.classList = "card-aside-type-text"
+    pCompany.innerText = enterprise
+    divType.append(pCompany)
+
+    let pLocation = document.createElement("p")
+    pLocation.classList = "card-aside-type-text"
+    pLocation.innerText = location
+    divType.append(pLocation)
+
+    let previousStorage = localStorage.getItem("appliedPositions")
+    if (previousStorage == null) {
+        localStorage.setItem("appliedPositions", id)
+        stored.push(JSON.parse(localStorage.getItem("appliedPositions")))
+    } else {
+        let nextStorage = [...stored, id]
+        localStorage.setItem("appliedPositions", nextStorage)
+        stored = [...nextStorage]
+    }
+}
 
 function switchButton (id) {
     let removeButton = document.getElementById(`button-remove-${id}`)
@@ -208,3 +221,33 @@ function switchButton (id) {
         })
     })
 }
+
+function preRender () {
+    let localStored = (localStorage.getItem("appliedPositions"))
+    if (localStored != null) {
+        let localFilterNonNumbers = localStored.replace(/\D/g, "")
+        let localFilterString = [...localFilterNonNumbers]
+        let toRender = localFilterString.map((element) => parseInt(element))
+        toRender.forEach(element => {
+            renderSidePostion(element)
+            let asideNone = document.getElementById("aside-none")
+            if(asideNone) {
+                asideNone.remove()
+            }
+            let buttonAdd = document.getElementById(`button-add-${element}`)
+            let footer = document.getElementById(`footer-${element}`)
+            buttonAdd.remove()
+            let buttonRemove = document.createElement("button")
+            buttonRemove.classList = "btn btn-default btn-small"
+            buttonRemove.innerText = "Remover candidatura"
+            buttonRemove.id = `button-remove-${element}`
+            footer.append(buttonRemove)
+            buttonRemove.addEventListener("click", () => {
+                switchButton(element)
+                removeSidePosition(element)
+                event.target.remove()
+            })
+        })
+    }
+}
+preRender()
